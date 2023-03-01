@@ -1,0 +1,23 @@
+version: "3.9"
+# the version of the docker-compose sintax that will be used
+
+# docker-compose run --rm app sh -c "django-admin startproject app ."  creates the Django Project via docker-compose
+
+services:
+# the blocks "services" are the most important parts of the docker-compose file
+  app:
+  # app is the name of the service that will be running
+    build:
+      context: .
+      # builds the dockerfile inside the current directory
+      args:
+        - DEV=true
+        # sets a build argument DEV and sets its value to TRUE
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+      # maps the ./app directory to the /app inside the container
+    command: >
+        sh -c "python manage.py runserver 0.0.0.0:8000"
+      # the command that is used to run the service as default if it is not defined when executed on the terminal

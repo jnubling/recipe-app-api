@@ -1,0 +1,16 @@
+# allows the creation of a list of unnecessary files that will be excluded from the dockerfile
+#Git
+.git
+.gitignore
+
+#Docker
+.docker
+
+#Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env/
+.venv/
+venv/

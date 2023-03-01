@@ -1,0 +1,9 @@
+[flake8]
+exclude =
+    migrations,
+    __pycache__,
+    manage.py,
+    settings.py
+    # excludes files and directories from the linting of errors
+
+    # docker-compose run --rm app sh -c "flake8"

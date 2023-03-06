@@ -23,6 +23,11 @@ RUN python -m venv /py && \
     # creates a new virtual environment
     /py/bin/pip install --upgrade pip && \ 
     # upgrades pip for the virtual environment that has been created
+    apk add --update --no-cache postgresql-client && \
+    # installs the package postgresql-client (dependency package)
+    apk add --update --no-cache --virtual .tmp-build-deps \
+    # sets a virtual dependency package at .tmp-build-deps to be used to remove the dependencies unused packages
+        build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \ 
     # installs the list requirements file
     if [ $DEV = "true" ]; \
@@ -30,6 +35,7 @@ RUN python -m venv /py && \
     fi && \
     # fi && (it is the default way to end an if quote)
     rm -rf /tmp && \ 
+    apk del .tmp-build-deps && \
     # removes the tmp directory (to eliminate extra dependencies on the image once has been created)
     adduser \ 
         --disabled-password \

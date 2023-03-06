@@ -6,4 +6,4 @@ exclude =
     settings.py
     # excludes files and directories from the linting of errors
 
-    # docker-compose run --rm app sh -c "flake8"
+    # docker-compose run --rm app sh -c "flake8" creates the linting flake8 file

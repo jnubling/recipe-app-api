@@ -33,7 +33,7 @@ class CommandTests(SimpleTestCase):
     @patch('time.sleep')
     # mocks the behaviour of sleep,
     # providing the command path to "patched_sleep"
-    def wait_for_db_delay(self, patched_sleep, patched_check):
+    def test_wait_for_db_delay(self, patched_sleep, patched_check):
         """test waiting for database when getting OperationalError"""
         patched_check.side_effect = [Psycopg2OpError] * 2 + \
             [OperationalError] * 3 + [True]

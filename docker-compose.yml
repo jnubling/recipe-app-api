@@ -19,7 +19,9 @@ services:
       - ./app:/app
       # maps the ./app directory to the /app inside the container
     command: >
-        sh -c "python manage.py runserver 0.0.0.0:8000"
+        sh -c "python manage.py wait_for_db &&
+               python manage.py migrate &&
+               python manage.py runserver 0.0.0.0:8000"
       # the command that is used to run the service as default if it is not defined when executed on the terminal
     environment:
       # tells the app how to connect to the database

@@ -12,8 +12,9 @@ from core import models
 
 class UserAdmin(BaseUserAdmin):
     """define the admin pages for users"""
+
     ordering = ['id']
-    list_display = [ 'email', 'name']
+    list_display = ['email', 'name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (
@@ -51,5 +52,6 @@ class UserAdmin(BaseUserAdmin):
             )
         }),
     )
+
 
 admin.site.register(models.User, UserAdmin)
